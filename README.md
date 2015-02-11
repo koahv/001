@@ -5,6 +5,7 @@ Requires xsetroot for dwm time display.
 Requires feh for setting desktop wallpaper (managed from time by w).
 
 
+
 1 Run sudo su; sh install.sh
 
 2 Copy .xinitrc .tmux.conf time w to  ~/
