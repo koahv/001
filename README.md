@@ -1,6 +1,6 @@
 # 001
 
-1 Run sudo su; install.sh
+1 Run sudo su; sh install.sh
 
 2 Copy .xinitrc .tmux.conf time w to  ~/
 
