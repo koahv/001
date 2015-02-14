@@ -1,0 +1,7 @@
+sudo eix-sync;
+#sudo emerge-delta-webrsync;
+sudo emerge -DuvaN system;
+sudo emerge --update --newuse --deep --with-bdeps=y @world;
+#sudo emerge --update --newuse @world;
+sudo emerge --depclean;
+#/usr/bin/gksudo /usr/bin/pglcmd update;
