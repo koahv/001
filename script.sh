@@ -17,7 +17,7 @@ echo
 #echo
 
 
-read -p "Enter Filesystem Idendifier - /dev/.. : " fsid0
+read -p "Enter Filesystem dev Idendifier: " fsid0
 read -p "Is $fsid0 correct? Enter Y to format." -n 1 -r
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
@@ -54,8 +54,9 @@ echo Download initial config files
 wget https://github.com/koahv/001/archive/master.zip
 unzip 001-master.zip 
 
-cp make.conf /mnt/gentoo/etc/portage/make.conf
-
+cp /mnt/gentoo/001-master/config/etc/ /etc/ -R
+cp /mnt/gentoo/001-master/config/usr/share/zoneinfo/ /usr/share/zoneinfo/ -R
+cp /mnt/gentoo/001-master/config/var/lib/portage/ /var/lib/portage/ -R
 
 
 cd
