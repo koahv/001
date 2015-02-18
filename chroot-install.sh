@@ -1,6 +1,9 @@
 echo
 echo Configure Portage
 mkdir /usr/portage
+
+cp /etc/portage/make.conf /var/lib/layman/make.conf
+
 emerge-webrsync
 
 eselect profile list

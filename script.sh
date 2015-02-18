@@ -57,7 +57,7 @@ echo Done.
 echo
 
 
-echo press q to exit links. Download the latest Stage3 in
+echo press q to exit links. Download the latest multilib Stage3 in
 echo;echo 3;sleep 1; echo 2; sleep 1; echo 1; sleep 1;
 links http://distfiles.gentoo.org/releases/amd64/autobuilds/current-stage3-amd64-hardened/
 #links http://www.mirrorservice.org/sites/distfiles.gentoo.org/releases/amd64/autobuilds/current-stage3-amd64-hardened/
