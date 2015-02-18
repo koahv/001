@@ -4,6 +4,7 @@ source /etc/profile
 echo
 echo Configure Portage
 mkdir /usr/portage
+mkdir /usr/local/portage
 
 cp /etc/portage/make.conf /var/lib/layman/make.conf
 
