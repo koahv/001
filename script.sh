@@ -32,7 +32,7 @@ echo
 
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
-umount /dev/sda2
+umount /mnt/gentoo01
 mkfs.ext4 -L GENTOO $fsid01
 fi
 
@@ -60,15 +60,14 @@ echo
 
 echo press q to exit links. Download the latest multilib Stage3 in
 echo;echo 3;sleep 1; echo 2; sleep 1; echo 1; sleep 1;
-links http://distfiles.gentoo.org/releases/amd64/autobuilds/current-stage3-amd64-hardened/
-#links http://www.mirrorservice.org/sites/distfiles.gentoo.org/releases/amd64/autobuilds/current-stage3-amd64-hardened/
+#links http://distfiles.gentoo.org/releases/amd64/autobuilds/current-stage3-amd64-hardened/
+links http://www.mirrorservice.org/sites/distfiles.gentoo.org/releases/amd64/autobuilds/current-stage3-amd64-hardened/
 
 echo Extracting Stage 3..
-#tar xvjpf stage3*
+tar xvjpf stage3*
 
 echo
 echo Download initial config files
-#
 wget https://github.com/koahv/001/archive/master.zip
 unzip master.zip 
 

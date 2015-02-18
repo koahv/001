@@ -19,8 +19,8 @@ fi
 locale-gen
 
 echo KERNEL
-emerge hardened-sources genkernel grub dhcpd
-cp /001-master/config/usr/src/linux/.superkoala-8.0 /usr/src/linux/
+emerge hardened-sources genkernel grub =net-misc/dhcpcd
+cp /001-master/config/usr/src/linux/.superkoala-8.0 /usr/src/linux/.superkoala-8.0
 genkernel --menuconfig all --makeopts=-j6
 grub2-mkconfig -o /boot/grub/grub.cfg
 grub2-mkconfig -o /boot/grub/grub.cfg
