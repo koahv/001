@@ -1,119 +1,104 @@
-# TODO add this script to iso or create a download link to wget
-
 echo Available Installation Media:
 echo
 lsscsi
 echo
-df -h
-#echo Run \"fdisk /dev/...\"
+#df -h
 echo
-read -p "Enter Filesystem Idendifier - /dev/.. : " fsid
-read -p "Is $fsid correct?" -n 1 -r
+
+
+#read -p "Enter Filesystem dev Idendifier: " fsid
+#read -p "Partition the disk ?" -n 1 -r
+#if [[ $REPLY =~ ^[Yy]$ ]]
+#then
+#fdisk $fsid
+#fi
+#echo
+#lsscsi
+#echo
+
+
+read -p "Enter Filesystem Idendifier (dev): " fsid00
+read -p "Is $fsid00 correct?" -n 1 -r
+
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
-fdisk $fsid
+echo 
+lsblk $fsid00
+
+echo
+read -p "Enter Parition Idendifier (dev): " fsid01
+read -p "Is $fsid01 correct? Enter Y to format partition $fsid01" -n 1 -r
+echo
+
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+umount /mnt/gentoo01
+mkfs.ext4 -L GENTOO $fsid01
+fi
+
 fi
 
 
-ask for input
-#read -p "Are you sure? " -n 1 -r
-#echo    # (optional) move to a new line
-#if [[ $REPLY =~ ^[Yy]$ ]]
-#then
-#    # do dangerous stuff
-#fi
+echo Installation Media Updated:
+echo
+lsscsi
+lsblk $fsid00
+lsblk $fsid01
+echo
 
 
 
+echo Preparing for chroot...
+mkdir /mnt/gentoo01
+mount $fsid01 /mnt/gentoo01
+mkdir /mnt/gentoo01/boot
+mkdir /mnt/gentoo01/home
+cd /mnt/gentoo01
+echo Done.
+echo
 
 
-
-# partition disk
-# TODO: disk selection input
-
-# lsscsi
-# fdisk /dev/sd..
-# mkfs.ext3 -L ROOT /dev/sd..
-# mkswap -L SWAP /dev/sd..
-
-
-
-# prepare and mount disks
-mkdir /mnt/gentoo
-mount /dev/sda2 /mnt/gentoo
-mkdir /mnt/gentoo/boot
-mkdir /mnt/gentoo/home
-
-
-
-# download and extract the latest stage3
-
-
-cd /mnt/gentoo
+echo press q to exit links. Download the latest multilib Stage3 in
+echo;echo 3;sleep 1; echo 2; sleep 1; echo 1; sleep 1;
 #links http://distfiles.gentoo.org/releases/amd64/autobuilds/current-stage3-amd64-hardened/
 links http://www.mirrorservice.org/sites/distfiles.gentoo.org/releases/amd64/autobuilds/current-stage3-amd64-hardened/
+
+echo Extracting Stage 3..
 tar xvjpf stage3*
+
+echo
+echo Download initial config files
+wget https://github.com/koahv/001/archive/master.zip
+unzip master.zip 
+
+cp /mnt/gentoo01/001-master/config/etc/ /mnt/gentoo01/ -R
+cp /mnt/gentoo01/001-master/config/usr/share/zoneinfo/GMT /mnt/gentoo01/etc/localtime
+cp /mnt/gentoo01/001-master/config/var/lib/portage/ /mnt/gentoo01/var/lib/portage/ -R
+
 cd
 
+echo
+echo Preparing chroot..
+cp -L /etc/resolv.conf /mnt/gentoo01/etc/resolv.conf
+mount -t proc none /mnt/gentoo01/proc
+mount -o bind /dev /mnt/gentoo01/dev
+
+echo
 
 
-# copy make.conf
-cd 001/config/etc/portage/
-cp make.conf /mnt/gentoo/etc/portage/make.conf
-cd
-
-
-# TODO: copy required config files
-#	create modified world file
-#	add kernel config file
-
-
-# prepare chroot environment
-cp -L /etc/resolv.conf /mnt/gentoo/etc/resolv.conf
-mount -t proc none /mnt/gentoo/proc
-mount -o bind /dev /mnt/gentoo/dev
-
-
-
-# chroot
-chroot /mnt/gentoo /bin/bash
+echo Chrooting. Now run chroot-install.sh
+chroot /mnt/gentoo01 /001-master/chroot-install.sh
 env-update
 source /etc/profile
 export PS1="(chroot) $PS1"
 
+echo
 
-
-# update portage tree. install new packages.
-mkdir /usr/portage;
-sh qq
-
-
-
-# configure system locale
-locale-gen
-
-cp /usr/share/zoneinfo/GMT /etc/localtime
-
-
-# install configure kernel. edit world file instead
-emerge hardened-sources dhcpcd grub
-genkernel --menuconfig all --makeopts="-j6"
-grub2-mkconfig - /boot/grub/grub.config
-grub2-mkconfig - /boot/grub/grub.config
-
-
-# exit session and unmount
-exit
-cd
-umount /mnt/gentoo/boot /mnt/gentoo/dev /mnt/gentoo/proc
-umount /mnt/gentoo/home /mnt/gentoo
+echo Reboot and run secondary install
+read -p "Reboot now?" -n 1 -r
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
 reboot
-
-
-
-
-
-
-
+fi
 
 

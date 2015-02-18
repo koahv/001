@@ -1,3 +1,6 @@
+env-update
+source /etc/profile
+
 echo
 echo Configure Portage
 mkdir /usr/portage
@@ -19,7 +22,8 @@ fi
 locale-gen
 
 echo KERNEL
-emerge hardened-sources genkernel grub dhcpcd
+echo NOTE: This kernel requires GCC 4.9 and lz4
+emerge hardened-sources genkernel grub dhcpcd gcc lz4
 cp /001-master/config/usr/src/linux/.superkoala-8.0 /usr/src/linux/.superkoala-8.0
 genkernel --menuconfig all --makeopts=-j6
 grub2-mkconfig -o /boot/grub/grub.cfg
