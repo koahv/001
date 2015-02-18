@@ -67,8 +67,8 @@ echo Extracting Stage 3..
 
 echo
 echo Download initial config files
-wget https://github.com/koahv/001/archive/master.zip
-unzip master.zip 
+#wget https://github.com/koahv/001/archive/master.zip
+#unzip master.zip 
 
 cp /mnt/gentoo01/001-master/config/etc/ /mnt/gentoo01/ -R
 cp /mnt/gentoo01/001-master/config/usr/share/zoneinfo/GMT /mnt/gentoo01/etc/localtime
