@@ -32,6 +32,7 @@ echo
 
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
+umount /dev/sda2
 mkfs.ext4 -L GENTOO $fsid01
 fi
 
