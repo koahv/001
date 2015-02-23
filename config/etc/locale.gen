@@ -1,4 +1,4 @@
-z# /etc/locale.gen: list all of the locales you want to have on your system
+# /etc/locale.gen: list all of the locales you want to have on your system
 #
 # The format of each line:
 # <locale> <charmap>

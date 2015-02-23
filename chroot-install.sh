@@ -20,13 +20,21 @@ then
 eselect profile set $profile
 fi
 
+
 locale-gen
 
 echo KERNEL
-echo NOTE: This kernel requires GCC 4.9 and lz4
-emerge hardened-sources genkernel grub dhcpcd gcc lz4
+echo NOTE: This kernel requires GCC 4.9 and lz4. updating gcc requires gcc-config. 
+echo compiling the kernel with a grsec kernel configured to use chroot restrictions should not have mknod enabled prior to kernel compile.
+emerge hardened-sources genkernel grub os-prober dhcpcd gcc lz4
+
+# su; eselect kernel
+
 cp /001-master/config/usr/src/linux/.superkoala-8.0 /usr/src/linux/.superkoala-8.0
 genkernel --menuconfig all --makeopts=-j6
+
+# ensure fstab root dir is correct for fsid
+
 grub2-mkconfig -o /boot/grub/grub.cfg
 grub2-mkconfig -o /boot/grub/grub.cfg
 echo
