@@ -9,7 +9,6 @@ function start00 {
 		elif [ "$opt" = "Menu" ]; then
 			menu
 		else
-			clear
 			echo invalid option
 		fi
 	done
@@ -156,9 +155,9 @@ function config {
 	echo Download initial config files
 	wget https://github.com/koahv/001/archive/master.zip
 	unzip master.zip 
-	cp /mnt/gentoo01/001-master/config/etc/ /mnt/gentoo01/ -R
-	cp /mnt/gentoo01/001-master/config/usr/share/zoneinfo/GMT /mnt/gentoo01/etc/localtime
-	cp /mnt/gentoo01/001-master/config/var/lib/portage/ /mnt/gentoo01/var/lib/portage/ -R
+	cp 001-master/config/etc/ /mnt/gentoo01/ -R
+	cp 001-master/config/usr/share/zoneinfo/GMT /mnt/gentoo01/etc/localtime
+	cp 001-master/config/var/lib/portage/ /mnt/gentoo01/var/lib/portage/ -R
 	cd
 }
 
