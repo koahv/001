@@ -18,25 +18,25 @@ function menu01 {
 	select opt in $OPTIONS; do
 		case $opt in
 			"UpdateShell")
-				mkfs00
+				env00
 				;;
 			"ConfigurePortage")
-				inst00
+				sys00
 				;;
 			"SelectSystemProfile")
-				stage3
+				env01
 				;;
 			"ConfigureLocale")
-				config
+				env02
 				;;
 			"Kernel")
-				inst01
+				sys01
 				;;
 			"SetPasswd")
-				inst02
+				env03
 				;;
 			"Quit")
-				exit
+				exit00
 				;;
 			*) echo invalid option;;
 		esac
@@ -127,6 +127,6 @@ read -p "Exit Chroot Session?" -n 1 -r
 	fi
 }
 
-start00
+start01
 
 
