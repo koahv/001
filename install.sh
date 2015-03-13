@@ -18,19 +18,19 @@ function execfunc00 {
 	lsfs00
 	lsfs01
 	mkfs00
-	qcontinue
+	qcontinue00
 	lsfs02
-	qcontinue
+	qcontinue00
 	inst00
-	qcontinue
+	qcontinue00
 	stage3
-	qcontinue
+	qcontinue00
 	config
-	qcontinue
+	qcontinue00
 	inst01
-	qcontinue
+	qcontinue00
 	inst02
-	qcontinue
+	qcontinue00
 	finish
 }
 
@@ -124,7 +124,8 @@ function inst00 {
 
 function stage3 {
 	cd /mnt/gentoo01
-	echo press q to exit links. Download the latest multilib Stage3 in
+	echo press q to exit links. Download the latest multilib Stage3
+	qcontinue00
 	echo;echo 3;sleep 1; echo 2; sleep 1; echo 1; sleep 1;
 	#links http://distfiles.gentoo.org/releases/amd64/autobuilds/current-stage3-amd64-hardened/
 	links http://www.mirrorservice.org/sites/distfiles.gentoo.org/releases/amd64/autobuilds/current-stage3-amd64-hardened/
@@ -136,6 +137,7 @@ function stage3 {
 function config {
 	cd /mnt/gentoo01
 	echo Download initial config files
+	rm master*
 	wget https://github.com/koahv/001/archive/master.zip
 	unzip master.zip 
 	cp 001-master/config/etc/ /mnt/gentoo01/ -R
