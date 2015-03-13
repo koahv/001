@@ -104,6 +104,7 @@ function sys01 {
 	emerge hardened-sources genkernel grub os-prober dhcpcd gcc lz4
 	# su; eselect kernel
 	cp /001-master/config/usr/src/linux/.superkoala-8.0 /usr/src/linux/.superkoala-8.0
+	cd /usr/src/linux; ls -al; cd
 	genkernel --menuconfig all --makeopts=-j6
 	# ensure fstab root dir is correct for fsid
 	grub2-mkconfig -o /boot/grub/grub.cfg

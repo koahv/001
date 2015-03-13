@@ -20,9 +20,7 @@ function execfunc00 {
 	mkfs00
 	lsfs02
 	inst00
-	qcontinue00
 	stage3
-	qcontinue00
 	config
 	qcontinue00
 	inst01
@@ -153,7 +151,7 @@ function inst01 {
 }
 
 function inst02 {
-	echo Chrooting. Now run chroot-install.sh
+	echo Chrooting. Now run chroot.sh in the 001-master dir.
 	#chroot /mnt/gentoo01 /001-master/chroot.sh
 	chroot /mnt/gentoo01 /bin/bash
 	env-update
