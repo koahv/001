@@ -1,20 +1,20 @@
 # Main Install format
-
+# Run this script as root -- su
 
 function start00 {
 	OPTIONS="Start Menu"
 	select opt in $OPTIONS; do
 		if [ "$opt" = "Start" ]; then
-			execfunc
+			execfunc00
 		elif [ "$opt" = "Menu" ]; then
-			menu
+			menu00
 		else
 			echo invalid option
 		fi
 	done
 }
 
-function execfunc {
+function execfunc00 {
 	lsfs00
 	lsfs01
 	mkfs00
@@ -34,7 +34,7 @@ function execfunc {
 	finish
 }
 
-function menu {
+function menu00 {
 	OPTIONS="ListMedia ListPartition mkfs PrepareChroot00 DownloadStage3 FSConfig PrepareChroot01 Chroot Reboot Quit"
 	select opt in $OPTIONS; do
 		case $opt in
@@ -73,7 +73,7 @@ function menu {
 	done
 }
 
-function qcontinue {
+function qcontinue00 {
 	echo
 	read -p "Continue y/n?" -n 1 -r
 	echo

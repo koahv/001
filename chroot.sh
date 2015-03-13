@@ -100,7 +100,7 @@ function env02 {
 function sys01 {
 	echo KERNEL
 	echo NOTE: This kernel requires GCC 4.9 and lz4. updating gcc requires gcc-config. 
-	echo disable mknod kernel config from compiler system with gresec kernel prior to build.
+	echo disable mknod kernel config from compiler system with grsec kernel prior to build.
 	emerge hardened-sources genkernel grub os-prober dhcpcd gcc lz4
 	# su; eselect kernel
 	cp /001-master/config/usr/src/linux/.superkoala-8.0 /usr/src/linux/.superkoala-8.0
