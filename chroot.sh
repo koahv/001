@@ -101,9 +101,9 @@ function sys01 {
 	echo KERNEL
 	echo NOTE: This kernel requires GCC 4.9 and lz4. updating gcc requires gcc-config. 
 	echo disable mknod kernel config from compiler system with grsec kernel prior to build.
-	emerge hardened-sources genkernel grub os-prober dhcpcd gcc lz4
+	emerge hardened-sources genkernel grub os-prober dhcpcd gcc app-arch/lz4
 	# su; eselect kernel
-	cp /001-master/config/usr/src/linux/.superkoala-8.0 /usr/src/linux/.superkoala-8.0
+	cp /001-master/config/usr/src/linux/.superkoala-8.0 /usr/src/linux/
 	cd /usr/src/linux; ls -al; cd
 	genkernel --menuconfig all --makeopts=-j6
 	# ensure fstab root dir is correct for fsid
