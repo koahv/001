@@ -74,59 +74,42 @@ function menu00 {
 }
 
 function qcontinue00 {
-	echo
-	read -p "Continue y/n?" -n 1 -r
-	echo
+	read -p "Continue y/n?" -n 1 -r; echo
 	if [[ $REPLY =~ ^[Yy]$ ]]; then
 		echo
 	else
-	start00
+		start00
 	fi
-	echo
 }
 
 function lsfs00 {
-	echo Available Installation Media:
-	echo
+	echo Available Installation Media:; echo
 	lsscsi
-	echo
 }
  
 function lsfs01 {
-	read -p "Enter Filesystem Idendifier (dev): " fsid00
-	echo
-	read -p "Is $fsid00 correct?" -n 1 -r
-	echo
-	if [[ $REPLY =~ ^[Yy]$ ]]
-	then
-	echo 
-	lsblk $fsid00
+	read -p "Enter Filesystem Idendifier (dev): " fsid00; echo
+	read -p "Is $fsid00 correct?" -n 1 -r; echo
+	if [[ $REPLY =~ ^[Yy]$ ]]; then
+		lsblk $fsid00
 	else
-	echo
-	lsfs01
+		lsfs01
 	fi
-	echo
 }
 
 function mkfs00 {
-	read -p "Enter Parition Idendifier (dev): " fsid01
-	echo
-	read -p "Is $fsid01 correct? Enter Y to format partition $fsid01" -n 1 -r
-	echo
-	if [[ $REPLY =~ ^[Yy]$ ]]
-	then
-	umount /mnt/gentoo01
-	mkfs.ext4 -L GENTOO $fsid01
+	read -p "Enter Parition Idendifier (dev): " fsid01; echo
+	read -p "Is $fsid01 correct? Enter Y to format partition $fsid01" -n 1 -r; echo
+	if [[ $REPLY =~ ^[Yy]$ ]]; then
+		umount /mnt/gentoo01
+		mkfs.ext4 -L GENTOO $fsid01
 	fi
 }
 
 function lsfs02 {
-	echo Installation Media Updated:
-	echo
-	lsscsi
-	echo
-	lsblk $fsid00
-	echo
+	echo Installation Media Updated:; echo
+	lsscsi;	echo
+	lsblk $fsid00; echo
 	lsblk $fsid01
 }
 
@@ -179,11 +162,10 @@ function inst02 {
 function finish {
 	echo Reboot and run secondary install
 	read -p "Reboot now?" -n 1 -r
-	if [[ $REPLY =~ ^[Yy]$ ]]
-	then
-	reboot
+	if [[ $REPLY =~ ^[Yy]$ ]]; then
+		reboot
 	else
-	echo
+		echo
 	fi
 }
 

@@ -18,10 +18,10 @@ function menu02 {
 	select opt in $OPTIONS; do
 		case $opt in
 			"CreateUser")
-				env00
+				env04
 				;;
 			"Clean")
-				sys00
+				sys02
 				;;
 			"Quit")
 				exit
