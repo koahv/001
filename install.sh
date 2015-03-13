@@ -18,9 +18,7 @@ function execfunc00 {
 	lsfs00
 	lsfs01
 	mkfs00
-	qcontinue00
 	lsfs02
-	qcontinue00
 	inst00
 	qcontinue00
 	stage3
@@ -137,6 +135,7 @@ function stage3 {
 function config {
 	cd /mnt/gentoo01
 	echo Download initial config files
+	rm 001-master* -R
 	rm master*
 	wget https://github.com/koahv/001/archive/master.zip
 	unzip master.zip 
@@ -155,7 +154,8 @@ function inst01 {
 
 function inst02 {
 	echo Chrooting. Now run chroot-install.sh
-	chroot /mnt/gentoo01 /001-master/chroot.sh
+	#chroot /mnt/gentoo01 /001-master/chroot.sh
+	chroot /mnt/gentoo01 /bin/bash
 	env-update
 	source /etc/profile
 	export PS1="(chroot) $PS1"
