@@ -6,10 +6,14 @@ This is not necessarily intended for any kind of public use. In such case, any c
 
 
 
-1 Create one 225mb FAT32 partition at the start of the drive called EF01 and one ext4 filesystem partition
+1 Create one 225mb FAT32 partition at the start of the drive called EF01 
 
-2 Run install.sh
+2 Create one ext4 filesystem partition
 
-3 Run install2.sh after successful install and logged in to new system
+3 Run install.sh
+
+4 Navigate to 001-master when instructed and run chroot.sh
+
+5 Run install2.sh after successful install and logged in to new system
 
 
