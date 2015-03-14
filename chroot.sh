@@ -14,7 +14,7 @@ function start01 {
 }
 
 function menu01 {
-	OPTIONS="UpdateShell ConfigurePortage SelectSystemProfile ConfigureLocale Kernel SetPasswd Quit"
+	OPTIONS="UpdateShell ConfigurePortage SelectSystemProfile ConfigureLocale Kernel Grub SetPasswd Quit"
 	select opt in $OPTIONS; do
 		case $opt in
 			"UpdateShell")
@@ -32,6 +32,10 @@ function menu01 {
 			"Kernel")
 				sys01
 				;;
+			"Grub")
+				sys02
+				;;
+
 			"SetPasswd")
 				env03
 				;;
