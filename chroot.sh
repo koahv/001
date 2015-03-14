@@ -130,7 +130,10 @@ function sys02 {
 #
 #	TODO:	fix
 #		efi
-	mount /boot/efi
+#
+#	do this before chroot
+#	mount /boot/efi
+
 	grub2-install --target=x86_64-efi
 	mkdir /boot/grub
 	grub2-mkconfig -o /boot/grub/grub.cfg

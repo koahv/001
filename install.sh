@@ -119,6 +119,11 @@ function inst00 {
 	mkdir /mnt/gentoo01/boot
 	mkdir /mnt/gentoo01/home
 	echo Done.
+#	
+#	!!TODO!!!!!!!!!!!!!!
+#	!!GET SDA1 AS FSID!!
+#	!!!!!!!!!!!!!!!!!!!!
+	mount /dev/sda1 /mnt/gentoo01/boot/efi
 }
 
 function stage3 {
@@ -151,6 +156,7 @@ function inst01 {
 	cp -L /etc/resolv.conf /mnt/gentoo01/etc/resolv.conf
 	mount -t proc none /mnt/gentoo01/proc
 	mount -o bind /dev /mnt/gentoo01/dev
+	mount /boot/efi
 }
 
 function inst02 {
