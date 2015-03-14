@@ -40,5 +40,5 @@
 /dev/sde1		/media/4.1	auto		rw,auto		0 0
 /dev/sdd1               /media/1.0      ntfs-3g         exec,defaults,uid=1000,gid=1000,dmask=000,fmask=1000,umask=0022 0 0
 /dev/sdd2               /media/1.1      ext4            exec,defaults
-LABEL=EF00 /boot/efi vfat defaults 0 2
+LABEL=EF01 /boot/efi vfat defaults 0 2
 #,auto,noatime,exec,rw 0 0
