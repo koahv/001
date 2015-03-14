@@ -76,5 +76,16 @@ function sys02 {
 
 start02
 
-
+# wget master.zip; unzip
+# emerge xorg-drivers xorg-server xf86-input-evdev
+# emerge nvidia
 # sh /environment/install.sh
+# emerge slim
+# cp /config/home/* /home/$usr/
+# rc-update add xdm default
+# TODO: config X locale
+# TODO: mouse config
+# emerge dmenu^
+# emerge tmux - TODO: fix env install
+# emerge update world
+

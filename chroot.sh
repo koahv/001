@@ -93,9 +93,10 @@ function env01 {
 	eselect profile list
 	read -p "Enter Number for \"hardened/linux/amd64\" " profile
 	read -p "Is $profile correct?" -n 1 -r
-	if [[ $REPLY =~ ^[Yy]$ ]]
-	then
-	eselect profile set $profile
+	if [[ $REPLY =~ ^[Yy]$ ]]; then
+		eselect profile set $profile
+	else 
+		env01
 	fi
 }
 
@@ -154,7 +155,7 @@ read -p "Exit Chroot Session?" -n 1 -r
 	if [[ $REPLY =~ ^[Yy]$ ]]; then
 		exit
 	else
-	start01
+		start01
 	fi
 }
 
