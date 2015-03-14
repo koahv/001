@@ -15,6 +15,8 @@ function start00 {
 }
 
 function execfunc00 {
+	echo You need to configure partitions prior to install. The script requires one \(225mb\) FAT32 EFI partition at the start of the drive and one partition for the system. This type of installation does not yet separate the root filesystem and any home directories into different partitions. Troubleshoot fstab first if necessary.
+	qcontinue00
 	lsfs00
 	lsfs01
 	mkfs00
@@ -109,6 +111,7 @@ function lsfs02 {
 	lsblk $fsid01
 }
 
+# running this from menu requires mkfs+ first due to fsid01 identifier
 function inst00 {
 	echo Preparing for chroot...
 	mkdir /mnt/gentoo01
@@ -139,7 +142,7 @@ function config {
 	unzip master.zip 
 	cp 001-master/config/etc/ /mnt/gentoo01/ -R
 	cp 001-master/config/usr/share/zoneinfo/GMT /mnt/gentoo01/etc/localtime
-	cp 001-master/config/var/lib/portage/ /mnt/gentoo01/var/lib/portage/ -R
+	cp 001-master/config/var/lib/portage/ /mnt/gentoo01/var/lib/ -R
 	cd
 }
 

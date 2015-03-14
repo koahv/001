@@ -56,17 +56,19 @@ function qcontinue01 {
 }
 
 function execfunc01 {
-env00
-sys00
-qcontinue01
-env01
-qcontinue01
-env02
-qcontinue01
-sys01
-qcontinue01
-env03
-exit00
+	env00
+	sys00
+	qcontinue01
+	env01
+	qcontinue01
+	env02
+	qcontinue01
+	sys01
+	qcontinue01
+	sys02
+	qcontinue01
+	env03
+	exit00
 }
 
 function env00 {
@@ -100,15 +102,36 @@ function env02 {
 function sys01 {
 	echo KERNEL
 	echo NOTE: This kernel requires GCC 4.9 and lz4. updating gcc requires gcc-config. 
-	echo disable mknod kernel config from compiler system with grsec kernel prior to build.
+	echo disable \'mknod\' and \'Deny mounts\' kernel configs from compiler system with grsec kernel prior to build.
 	emerge hardened-sources genkernel grub os-prober dhcpcd gcc app-arch/lz4
+	gcc-config -l
+	read -p "Enter Number for \"x86_64-pc-linux-gnu-4.9.2 or later\" " gcc
+	read -p "Is $gcc correct?" -n 1 -r
+	if [[ $REPLY =~ ^[Yy]$ ]]; then
+		gcc-config $gcc
+	else
+		# modify
+		gcc-config -l
+	fi
+	env-update && source /etc/profile
+	emerge --oneshot libtool
 	# su; eselect kernel
-	cp /001-master/config/usr/src/linux/.superkoala-8.0 /usr/src/linux/
+	cp /001-master/config/usr/src/linux/.superkoala-8.9 /usr/src/linux/
 	cd /usr/src/linux; ls -al; cd
 	genkernel --menuconfig all --makeopts=-j6
-	# ensure fstab root dir is correct for fsid
+}
+
+function sys02 {
+#	ensure fstab root dir is correct for fsid
+#
+#	TODO:	fix
+#		efi
+	mount /boot/efi
+	grub2-install --target=x86_64-efi
+	mkdir /boot/grub
 	grub2-mkconfig -o /boot/grub/grub.cfg
 	grub2-mkconfig -o /boot/grub/grub.cfg
+
 }
 
 function env03 {
@@ -124,7 +147,7 @@ read -p "Exit Chroot Session?" -n 1 -r
 	if [[ $REPLY =~ ^[Yy]$ ]]; then
 		exit
 	else
-	start00
+	start01
 	fi
 }
 

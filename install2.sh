@@ -6,7 +6,7 @@ function start02 {
 		if [ "$opt" = "Start" ]; then
 			execfunc02
 		elif [ "$opt" = "Menu" ]; then
-			menu00
+			menu02
 		else
 			echo invalid option
 		fi
@@ -61,8 +61,8 @@ function env04 {
 	read -p "Enter Username" usr; echo
 	read -p "Is $usr correct?" -n 1 -r; echo
 	if [[ $REPLY =~ ^[Yy]$ ]]; then
-		useradd -m -G users,wheel,audio -s /bin/bash yournick
-		passwd yournick
+		useradd -m -G users,wheel,audio -s /bin/bash $usr
+		passwd $usr
 	else
 		env04
 	fi
@@ -74,3 +74,7 @@ function sys02 {
 	#rm /001-master -R
 }
 
+start02
+
+
+# sh /environment/install.sh
