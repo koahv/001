@@ -11,6 +11,7 @@ function start02 {
 			echo invalid option
 		fi
 	done
+
 }
 
 function menu02 {
@@ -35,7 +36,7 @@ function qcontinue02 {
 	echo; read -p "Continue y/n?" -n 1 -r; echo
 	if [[ $REPLY =~ ^[Yy]$ ]]; then; echo
 	else
-	start02
+		start02
 	fi; echo
 }
 
@@ -45,7 +46,7 @@ read -p "Exit Session?" -n 1 -r
 	if [[ $REPLY =~ ^[Yy]$ ]]; then
 		exit
 	else
-	start02
+		start02
 	fi
 }
 

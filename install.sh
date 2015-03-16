@@ -109,7 +109,7 @@ function lsfs02 {
 	lsscsi;	echo
 	lsblk $fsid00; echo
 	lsblk $fsid01
-}
+
 
 # running this from menu requires mkfs+ first due to fsid01 identifier
 function inst00 {
