@@ -77,6 +77,9 @@ function sys02 {
 
 start02
 
+
+
+# confirm install.sh and chroot.sh validity
 # wget master.zip; unzip
 # emerge xorg-drivers xorg-server xf86-input-evdev
 # emerge nvidia
@@ -89,4 +92,7 @@ start02
 # emerge dmenu^
 # emerge tmux - TODO: fix env install
 # emerge update world
+
+
+
 

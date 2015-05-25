@@ -104,6 +104,7 @@ function env02 {
 	locale-gen
 }
 
+# clean
 function sys01 {
 	echo KERNEL
 	echo NOTE: This kernel requires GCC 4.9 and lz4. updating gcc requires gcc-config. 
@@ -162,3 +163,6 @@ read -p "Exit Chroot Session?" -n 1 -r
 start01
 
 
+
+# check
+# debug

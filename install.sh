@@ -131,7 +131,8 @@ function stage3 {
 	echo press q to exit links. Download the latest multilib Stage3
 	qcontinue00
 	echo;echo 3;sleep 1; echo 2; sleep 1; echo 1; sleep 1;
-	#links http://distfiles.gentoo.org/releases/amd64/autobuilds/current-stage3-amd64-hardened/
+	# local mirror during development
+	# links http://distfiles.gentoo.org/releases/amd64/autobuilds/current-stage3-amd64-hardened/
 	links http://www.mirrorservice.org/sites/distfiles.gentoo.org/releases/amd64/autobuilds/current-stage3-amd64-hardened/
 	echo Extracting Stage 3..
 	tar xvjpf stage3*
@@ -161,7 +162,7 @@ function inst01 {
 
 function inst02 {
 	echo Chrooting. Now run chroot.sh in the 001-master dir.
-	#chroot /mnt/gentoo01 /001-master/chroot.sh
+	#chroot /mnt/gentoo01 /001-master/chroot.sh	!
 	chroot /mnt/gentoo01 /bin/bash
 	env-update
 	source /etc/profile
@@ -182,6 +183,8 @@ function finish {
 start00
 
 
+# check
+# debug
 
 
 
