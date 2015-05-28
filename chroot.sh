@@ -89,6 +89,7 @@ function sys00 {
 	emerge-webrsync
 }
 
+# it doesnt look like this is necessary
 function env01 {
 	eselect profile list
 	read -p "Enter Number for \"hardened/linux/amd64\" " profile
@@ -122,7 +123,7 @@ function sys01 {
 	env-update && source /etc/profile
 	emerge --oneshot libtool
 	# su; eselect kernel
-	cp /001-master/config/usr/src/linux/.superkoala-8.9 /usr/src/linux/
+	cp /001-master/config/usr/src/linux/.superkoala-* /usr/src/linux/
 	cd /usr/src/linux; ls -al; cd
 	genkernel --menuconfig all --makeopts=-j6
 }

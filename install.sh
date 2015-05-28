@@ -80,6 +80,11 @@ function qcontinue00 {
 	fi
 }
 
+
+
+# instruct user to create partitions prior to script. start from chroot.
+# enter filesystem id, enter parition id, enter efi partition id >>> chroot
+
 function lsfs00 {
 	echo Available Installation Media:; echo
 	lsscsi
@@ -95,6 +100,7 @@ function lsfs01 {
 	fi
 }
 
+# rm mkfs, use this function only to retrieve fsid
 function mkfs00 {
 	read -p "Enter Parition Idendifier (dev): " fsid01; echo
 	read -p "Is $fsid01 correct? Enter Y to format partition $fsid01" -n 1 -r; echo
@@ -109,7 +115,7 @@ function lsfs02 {
 	lsscsi;	echo
 	lsblk $fsid00; echo
 	lsblk $fsid01
-
+}
 
 # running this from menu requires mkfs+ first due to fsid01 identifier
 function inst00 {
@@ -117,6 +123,7 @@ function inst00 {
 	mkdir /mnt/gentoo01
 	mount $fsid01 /mnt/gentoo01
 	mkdir /mnt/gentoo01/boot
+	mkdir /mnt/gentoo01/boot/efi
 	mkdir /mnt/gentoo01/home
 	echo Done.
 #	
@@ -185,11 +192,5 @@ start00
 
 # check
 # debug
-
-
-
-
-
-
-
-
+# remove filesystem changes and start from chroot.
+# improve navigation flexibility
