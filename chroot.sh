@@ -1,3 +1,4 @@
+#!/bin/bash
 # Chroot Install format
 
 function start01 {
@@ -110,7 +111,7 @@ function sys01 {
 	echo KERNEL
 	echo NOTE: This kernel requires GCC 4.9 and lz4. updating gcc requires gcc-config. 
 	echo disable \'mknod\' and \'Deny mounts\' kernel configs from compiler system with grsec kernel prior to build.
-	emerge hardened-sources genkernel grub os-prober dhcpcd gcc app-arch/lz4
+	emerge hardened-sources genkernel grub os-prober dhcpcd gcc app-arch/lz4 vim
 	gcc-config -l
 	read -p "Enter Number for \"x86_64-pc-linux-gnu-4.9.2 or later\" " gcc
 	read -p "Is $gcc correct?" -n 1 -r
@@ -136,6 +137,20 @@ function sys02 {
 #
 #	do this before chroot
 #	mount /boot/efi
+	
+	echo The EFI partition identifier needs to be listed correctly in fstab.
+	echo When vim loads the fstab file, ensure that the line: 
+	echo \/dev\/EFI-identifier    \/boot\/efi    vfat    noauto,noatime 1 2
+	echo is entered with key command \'i\' and saved with key command: :qw
+	qcontinue01
+	vim /etc/fstab
+	read -p "Is the modification correct?" -n 1 -r
+	echo
+	if [[ $REPLY =~ ^[Yy]$ ]]; then
+		echo
+	else
+		sys02
+	fi
 
 	mkdir /boot/grub
 

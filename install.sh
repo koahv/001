@@ -96,18 +96,20 @@ function lsfs00 {
 
 #integrate better. chroot dependancy
 function lsfs01 {
-	read -p "Enter Partition Idendifier (dev): " fsid00; echo
-	read -p "Is $fsid00 correct?" -n 1 -r; echo
-	if [[ $REPLY =~ ^[Yy]$ ]]; then
-		lsblk $fsid00
-	else
-		lsfs01
-	fi
+	echo When instructed, enter the EFI Partition Identifier followed by the System Partition Identifier.
 
 	read -p "Enter EFI Partition Idendifier (dev): " fsid01; echo
 	read -p "Is $fsid01 correct?" -n 1 -r; echo
 	if [[ $REPLY =~ ^[Yy]$ ]]; then
 		lsblk $fsid01
+	else
+		lsfs01
+	fi
+
+	read -p "Enter System Partition Idendifier (dev): " fsid00; echo
+	read -p "Is $fsid00 correct?" -n 1 -r; echo
+	if [[ $REPLY =~ ^[Yy]$ ]]; then
+		lsblk $fsid00
 	else
 		lsfs01
 	fi
