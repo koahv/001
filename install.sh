@@ -94,7 +94,7 @@ function lsfs00 {
 }
  
 
-#integrate better. chroot dependancy
+#integrate better. chroot dependency
 function lsfs01 {
 	echo When instructed, enter the EFI Partition Identifier followed by the System Partition Identifier.
 
