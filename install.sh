@@ -93,6 +93,8 @@ function lsfs00 {
 	lsscsi
 }
  
+
+#integrate better. chroot dependancy
 function lsfs01 {
 	read -p "Enter Partition Idendifier (dev): " fsid00; echo
 	read -p "Is $fsid00 correct?" -n 1 -r; echo
@@ -137,7 +139,7 @@ function inst00 {
 	mkdir /mnt/gentoo01/boot/efi
 	mkdir /mnt/gentoo01/home
 	echo Done.
-	mount $fsid01 /mnt/gentoo01/boot/efi
+#	mount $fsid01 /mnt/gentoo01/boot/efi
 }
 
 function stage3 {
@@ -171,6 +173,8 @@ function inst01 {
 	cp -L /etc/resolv.conf /mnt/gentoo01/etc/resolv.conf
 	mount -t proc none /mnt/gentoo01/proc
 	mount -o bind /dev /mnt/gentoo01/dev
+	# new : grub chroot install fix attempt. WORKS - now include function to verify fstab fsid
+	mount -t sysfs sys /mnt/gentoo01/sys
 	#mount /boot/efi
 }
 
