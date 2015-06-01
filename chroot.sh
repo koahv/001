@@ -63,7 +63,7 @@ function execfunc01 {
 	env00
 	sys00
 	qcontinue01
-	env01
+#	env01
 	qcontinue01
 	env02
 	qcontinue01
@@ -137,8 +137,12 @@ function sys02 {
 #	do this before chroot
 #	mount /boot/efi
 
-	grub2-install --target=x86_64-efi
 	mkdir /boot/grub
+
+	grep -v rootfs /proc/mounts > /etc/mtab
+
+	grub2-install --target=x86_64-efi #/dev/sda1
+
 	grub2-mkconfig -o /boot/grub/grub.cfg
 	grub2-mkconfig -o /boot/grub/grub.cfg
 

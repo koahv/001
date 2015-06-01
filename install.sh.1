@@ -15,14 +15,11 @@ function start00 {
 }
 
 function execfunc00 {
-	echo You need to configure partitions prior to install. The script requires one \(225mb\) FAT32 EFI partition at the start of the drive and one partition for the system. Have dev identifiers ready.
-	echo
-	echo This type of installation does not yet separate the root filesystem and any home directories into different partitions. Troubleshoot fstab first if necessary.
-	echo
+	echo You need to configure partitions prior to install. The script requires one \(225mb\) FAT32 EFI partition at the start of the drive and one partition for the system. This type of installation does not yet separate the root filesystem and any home directories into different partitions. Troubleshoot fstab first if necessary.
 	qcontinue00
-#	lsfs00
+	lsfs00
 	lsfs01
-#	mkfs00
+	mkfs00
 	lsfs02
 	inst00
 	stage3
@@ -94,35 +91,27 @@ function lsfs00 {
 }
  
 function lsfs01 {
-	read -p "Enter Partition Idendifier (dev): " fsid00; echo
+	read -p "Enter Filesystem Idendifier (dev): " fsid00; echo
 	read -p "Is $fsid00 correct?" -n 1 -r; echo
 	if [[ $REPLY =~ ^[Yy]$ ]]; then
 		lsblk $fsid00
 	else
 		lsfs01
 	fi
-
-	read -p "Enter EFI Partition Idendifier (dev): " fsid01; echo
-	read -p "Is $fsid01 correct?" -n 1 -r; echo
-	if [[ $REPLY =~ ^[Yy]$ ]]; then
-		lsblk $fsid01
-	else
-		lsfs01
-	fi
 }
 
 # rm mkfs, use this function only to retrieve fsid
-#function mkfs00 {
-#	read -p "Enter Parition Idendifier (dev): " fsid01; echo
-#	read -p "Is $fsid01 correct? Enter Y to format partition $fsid01" -n 1 -r; echo
-#	if [[ $REPLY =~ ^[Yy]$ ]]; then
-#		umount /mnt/gentoo01
-#		mkfs.ext4 -L GENTOO $fsid01
-#	fi
-#}
+function mkfs00 {
+	read -p "Enter Parition Idendifier (dev): " fsid01; echo
+	read -p "Is $fsid01 correct? Enter Y to format partition $fsid01" -n 1 -r; echo
+	if [[ $REPLY =~ ^[Yy]$ ]]; then
+		umount /mnt/gentoo01
+		mkfs.ext4 -L GENTOO $fsid01
+	fi
+}
 
 function lsfs02 {
-	echo Installation Media Selected:; echo
+	echo Installation Media Updated:; echo
 	lsscsi;	echo
 	lsblk $fsid00; echo
 	lsblk $fsid01
@@ -132,12 +121,16 @@ function lsfs02 {
 function inst00 {
 	echo Preparing for chroot...
 	mkdir /mnt/gentoo01
-	mount $fsid00 /mnt/gentoo01
+	mount $fsid01 /mnt/gentoo01
 	mkdir /mnt/gentoo01/boot
 	mkdir /mnt/gentoo01/boot/efi
 	mkdir /mnt/gentoo01/home
 	echo Done.
-	mount $fsid01 /mnt/gentoo01/boot/efi
+#	
+#	!!TODO!!!!!!!!!!!!!!
+#	!!GET SDA1 AS FSID!!
+#	!!!!!!!!!!!!!!!!!!!!
+	mount /dev/sda1 /mnt/gentoo01/boot/efi
 }
 
 function stage3 {
@@ -171,7 +164,7 @@ function inst01 {
 	cp -L /etc/resolv.conf /mnt/gentoo01/etc/resolv.conf
 	mount -t proc none /mnt/gentoo01/proc
 	mount -o bind /dev /mnt/gentoo01/dev
-	#mount /boot/efi
+	mount /boot/efi
 }
 
 function inst02 {
