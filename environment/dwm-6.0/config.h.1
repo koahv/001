@@ -12,20 +12,25 @@ static const Bool showbar           = True;     /* False means no bar */
 static const Bool topbar            = True;     /* False means bottom bar */
 
 
+
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20" };
-
 
 static const Rule rules[] = {
 	/* class         instance    title       tags mask     isfloating   monitor */
 
+	{ "Nautilus",    NULL,       NULL,       1 << 0,       False,       -1 },
 	{ "Firefox",     NULL,       NULL,       1 << 1,       False,       -1 },
 	{ "Iceweasel",   NULL,       NULL,       1 << 1,       False,       -1 },
 	{ "Icedove",	 NULL,       NULL,       1 << 2,       False,       -1 },
+	{ "Rainlendar2", NULL,       NULL,       1 << 3,       False,       -1 },
 	{ "Steam",       NULL,       NULL,       1 << 4,       False,       -1 },
 	{ "Smplayer",    NULL,       NULL,       1 << 5,       False,       -1 },
 	{ "Clementine",  NULL,       NULL,       1 << 6,       False,       -1 },
 	{ "VirtualBox",  NULL,       NULL,       1 << 7,       False,       -1 },
+	{ "Kate",        NULL,       NULL,       1 << 8,       False,       -1 },
+
+
 };
 
 
@@ -34,7 +39,6 @@ static const float mfact      = 0.55; /* factor of master area size [0.05..0.95]
 static const int nmaster      = 1;    /* number of clients in master area */
 static const Bool resizehints = True; /* True means respect size hints in tiled resizals */
 
-
 static const Layout layouts[] = {
 	/* symbol     arrange function */
 	{ "[]=",      tile },    /* first entry is default */
@@ -42,26 +46,23 @@ static const Layout layouts[] = {
 	{ "[M]",      monocle },
 };
 
-
 /* key definitions 	 !tagkey#2 modified from toggleview to view	*/
 #define MODKEY Mod1Mask
 #define TAGKEYS(KEY,TAG) \
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
-	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
+	{ MODKEY|ControlMask,           KEY,      toggleview,           {.ui = 1 << TAG} }, \
 	{ MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
+
 
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
-
 /* commands */
 static const char *dmenucmd[] = { "dmenu_run", "-fn", font, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
 static const char *termcmd[]  = { "st", "-e", "tmux", NULL };
 static const char *termcmd0[] = { "uxterm", NULL };
-static const char *termcmd1[]  = { "st", "-e", "ranger", NULL };
-
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -70,7 +71,6 @@ static Key keys[] = {
 	{ MODKEY,                       XK_grave,  spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY|ShiftMask,             XK_Delete, spawn,          {.v = termcmd0 } },
-        { MODKEY|ShiftMask,             XK_BackSpace, spawn,       {.v = termcmd1 } },
 	{ MODKEY,                       XK_x,      togglebar,      {0} },
 	{ MODKEY,                       XK_q,      incnmaster,     {.i = +1 } },
 	{ MODKEY,                       XK_w,      incnmaster,     {.i = -1 } },
@@ -90,7 +90,11 @@ static Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
-	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+
+
+	{ MODKEY|ControlMask,           XK_1,      view,           {.ui = 1 << 11} },
+
+
 
 
 	TAGKEYS(                        XK_1,                      0)
@@ -100,22 +104,12 @@ static Key keys[] = {
 	TAGKEYS(                        XK_5,                      4)
 	TAGKEYS(                        XK_6,                      5)
 	TAGKEYS(                        XK_7,                      6)
+        TAGKEYS(                        XK_F7,                     6)
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	TAGKEYS(                        XK_0,                      9)
-	{ MODKEY|ControlMask,           XK_1,      view,           {.ui = 1 << 10} },
-	{ MODKEY|ControlMask,           XK_2,      view,           {.ui = 1 << 11} },
-	{ MODKEY|ControlMask,           XK_3,      view,           {.ui = 1 << 12} },
-	{ MODKEY|ControlMask,           XK_4,      view,           {.ui = 1 << 13} },
-	{ MODKEY|ControlMask,           XK_5,      view,           {.ui = 1 << 14} },
-	{ MODKEY|ControlMask,           XK_6,      view,           {.ui = 1 << 15} },
-	{ MODKEY|ControlMask,           XK_7,      view,           {.ui = 1 << 16} },
-	{ MODKEY|ControlMask,           XK_8,      view,           {.ui = 1 << 17} },
-	{ MODKEY|ControlMask,           XK_9,      view,           {.ui = 1 << 18} },
-	{ MODKEY|ControlMask,           XK_0,      view,           {.ui = 1 << 19} },
-
+	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 };
-
 
 /* button definitions */
 /* click can be ClkLtSymbol, ClkStatusText, ClkWinTitle, ClkClientWin, or ClkRootWin */
