@@ -1,7 +1,22 @@
-sudo eix-sync;
-#sudo emerge-delta-webrsync;
-sudo emerge -DuvaN system;
-sudo emerge --update --newuse --deep --with-bdeps=y @world;
-#sudo emerge --update --newuse @world;
-sudo emerge --depclean;
-#/usr/bin/gksudo /usr/bin/pglcmd update;
+#!/bin/bash
+function qcontinue00 {
+	read -p "UPDATE Y/N?" -n 1 -r; echo
+	if [[ $REPLY =~ ^[Yy]$ ]]; then
+		sudo eix-sync;
+		#sudo emerge-delta-webrsync;
+		sudo emerge -DuvaN system;
+		#input some use vars if required
+		#sudo emerge --update --newuse --deep --with-bdeps=y @world;
+		sudo emerge --update --newuse @world;
+		sudo emerge --depclean;
+		#/usr/bin/gksudo /usr/bin/pglcmd update;
+		#wget http://o0-770.rhcloud.com
+	else
+		echo
+		#exit
+	fi
+}
+#time
+qcontinue00
+
+
