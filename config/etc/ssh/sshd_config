@@ -10,13 +10,13 @@
 # possible, but leave them commented.  Uncommented options override the
 # default value.
 
-#Port 22
+Port 7587
 #AddressFamily any
 #ListenAddress 0.0.0.0
 #ListenAddress ::
 
 # The default requires explicit activation of protocol 1
-#Protocol 2
+Protocol 2
 
 # HostKey for protocol version 1
 #HostKey /etc/ssh/ssh_host_key
@@ -41,10 +41,10 @@
 # Authentication:
 
 #LoginGraceTime 2m
-#PermitRootLogin yes
-#StrictModes yes
-#MaxAuthTries 6
-#MaxSessions 10
+PermitRootLogin no
+StrictModes yes
+MaxAuthTries 1
+MaxSessions 1
 
 #RSAAuthentication yes
 #PubkeyAuthentication yes
@@ -70,7 +70,7 @@
 
 # To disable tunneled clear text passwords, change to no here!
 PasswordAuthentication no
-#PermitEmptyPasswords no
+PermitEmptyPasswords no
 
 # Change to no to disable s/key passwords
 #ChallengeResponseAuthentication yes
@@ -150,7 +150,8 @@ Subsystem	sftp	/usr/lib64/misc/sftp-server
 # Allow client to pass locale environment variables #367017
 AcceptEnv LANG LC_*
 
-AllowUsers kt5i4mvut58ngut58wjhfklnvobnjyimsvjy58nomuyhgfdssmv58ubvusm5yjbm8obnj
+AllowUsers kt5i4mvut58ngut567m8hgdwjhfkln7nvobnjyi56msvn8mjy58nomuyhgfds56smv58ubvus5675yjbm8obnj
+DenyUsers z0
 MaxStartups 2:30:10
-
+Banner /etc/ssh/sshd-banner
 
