@@ -9,8 +9,6 @@ function qcontinue00 {
 		#sudo emerge --update --newuse --deep --with-bdeps=y @world;
 		sudo emerge --update --newuse @world;
 		sudo emerge --depclean;
-		#/usr/bin/gksudo /usr/bin/pglcmd update;
-		#wget http://o0-770.rhcloud.com
 	else
 		echo
 		#exit
