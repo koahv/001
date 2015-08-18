@@ -81,6 +81,7 @@ function env00 {
 	source /etc/profile
 }
 
+# distcc
 function sys00 {
 	echo
 	echo Configure Portage
@@ -126,6 +127,7 @@ function sys01 {
 	# su; eselect kernel
 	cp /001-master/config/usr/src/linux/.superkoala-* /usr/src/linux/
 	cd /usr/src/linux; ls -al; cd
+	# continue
 	genkernel --menuconfig all --makeopts=-j6
 }
 

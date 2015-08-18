@@ -157,6 +157,7 @@ function stage3 {
 	cd
 }
 
+# git clone instead
 function config {
 	cd /mnt/gentoo01
 	echo Download initial config files
