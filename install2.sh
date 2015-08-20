@@ -81,6 +81,7 @@ start02
 
 # confirm install.sh and chroot.sh validity
 # wget master.zip; unzip
+# emerge -e world
 # emerge xorg-drivers xorg-server xf86-input-evdev
 # emerge nvidia
 # sh /environment/install.sh

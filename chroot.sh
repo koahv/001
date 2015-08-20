@@ -108,6 +108,7 @@ function env02 {
 }
 
 # clean
+# consider gcc emerge after reboot due to flags,parameters of host
 function sys01 {
 	echo KERNEL
 	echo NOTE: This kernel requires GCC 4.9 and lz4. updating gcc requires gcc-config. 
@@ -138,7 +139,7 @@ function sys02 {
 #		efi
 #
 #	do this before chroot
-#	mount /boot/efi
+#	mount /boot/efi according to fstab
 	
 	echo The EFI partition identifier needs to be listed correctly in fstab.
 	echo When vim loads the fstab file, ensure that the line: 
@@ -155,6 +156,7 @@ function sys02 {
 	fi
 
 	mkdir /boot/grub
+	#mkdir /boot/efi;mount /boot/efi^
 
 	grep -v rootfs /proc/mounts > /etc/mtab
 
