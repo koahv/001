@@ -1,0 +1,120 @@
+
+###########################
+# xbindkeys configuration #
+###########################
+#
+# Version: 0.1.3
+#
+# If you edit this, do not forget to uncomment any lines that you change.
+# The pound(#) symbol may be used anywhere for comments.
+#
+# A list of keys is in /usr/include/X11/keysym.h and in
+# /usr/include/X11/keysymdef.h 
+# The XK_ is not needed. 
+#
+# List of modifier (on my keyboard): 
+#   Control, Shift, Mod1 (Alt), Mod2 (NumLock), 
+#   Mod3 (CapsLock), Mod4, Mod5 (Scroll). 
+# Another way to specifie a key is to use 'xev' and set the 
+# keycode with c:nnn or the modifier with m:nnn where nnn is 
+# the keycode or the state returned by xev 
+
+#keystate_numlock = enable
+#keystate_scrolllock = enable
+#keystate_capslock = enable
+
+#htop
+"uxterm -e htop"
+    m:0x10 + c:72
+    Mod2 + F6
+
+#next
+"mocp --next"
+    m:0x0 + c:171
+    XF86AudioNext 
+
+#next001
+"mocp --next"
+    m:0x10 + c:75
+    Mod2 + F9
+
+#prev
+"mocp --previous"
+    m:0x0 + c:173
+    XF86AudioPrev 
+
+#play-pause
+"mocp --toggle-pause"
+    m:0x0 + c:172
+    XF86AudioPlay 
+
+#volup
+"amixer set Master 5%+"
+    m:0x0 + c:123
+    XF86AudioRaiseVolume 
+
+#voldown
+" amixer set Master 5%-"
+    m:0x0 + c:122
+    XF86AudioLowerVolume 
+
+#firefox
+"firefox"
+    m:0x10 + c:67
+    Mod2 + F1
+
+
+
+
+
+
+#thunderbird
+"thunderbird"
+    m:0x10 + c:68
+    Mod2 + F2
+
+#catfish
+#"catfish"
+#    m:0x10 + c:69
+#    Mod2 + F3
+
+#steam
+"steam"
+    m:0x10 + c:70
+    Mod2 + F4
+
+#moc
+#"uxterm -e mocp"
+#    m:0x10 + c:73
+#    Mod2 + F7
+
+#moc
+"sleep 1 && xdotool key alt+7 && uxterm -e mocp"
+    m:0x10 + c:73
+    Mod2 + F7
+
+#uzbl
+#"sleep 1 && xdotool key alt+2 && uzbl-tabbed"
+#    m:0x10 + c:67
+#    Mod2 + F1
+
+
+
+
+
+#links
+"st -e links -g"
+    m:0x10 + c:69
+    Mod2 + F3
+
+
+
+#ejectdisc
+#"sh eject"
+#    m:0x10 + c:74
+#    Mod2 + F8
+
+
+
+#
+# End of xbindkeys configuration
