@@ -92,6 +92,7 @@ start02
 # TODO: mouse config
 # emerge dmenu^
 # emerge tmux - TODO: fix env install
+# emerge xsetroot
 # emerge update world
 
 
