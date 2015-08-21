@@ -1,5 +1,0 @@
-sleep 2 &
-st -e sh qq &
-uxterm -e htop &
-xsensors
-
